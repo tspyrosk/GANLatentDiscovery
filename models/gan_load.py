@@ -51,7 +51,7 @@ class StyleGAN2Wrapper(nn.Module):
         self.dim_z = 512
         self.dim_shift = self.style_gan2.w_dim if shift_in_w else self.dim_z
 
-    def forward(self, input, cond, input_is_latent=False):
+    def forward(self, input, cond = [], input_is_latent=False):
         return self.style_gan2([input], cond, input_is_latent=input_is_latent)[0]
 
     def gen_shifted(self, z, shift):
