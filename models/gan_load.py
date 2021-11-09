@@ -58,7 +58,6 @@ class StyleGAN2Wrapper(nn.Module):
     def gen_shifted(self, z, shift):
         cond = torch.empty(0, 3)
         if self.shift_in_w:
-            w = self.style_gan2.mapping(z, cond)
             return self.forward(w + shift, cond, input_is_latent=True)
         else:
             return self.forward(z + shift, cond, input_is_latent=False)
