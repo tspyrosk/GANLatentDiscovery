@@ -57,9 +57,9 @@ class StyleGAN2Wrapper(nn.Module):
     def gen_shifted(self, z, shift):
         if self.shift_in_w:
             w = self.style_gan2.get_latent(z)
-            return self.forward(w + shift, input_is_latent=True)
+            return self.forward(w + shift, 0, input_is_latent=True)
         else:
-            return self.forward(z + shift, input_is_latent=False)
+            return self.forward(z + shift, 0, input_is_latent=False)
 
 
 def make_biggan_config(weights_root):
