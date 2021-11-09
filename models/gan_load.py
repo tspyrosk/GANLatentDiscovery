@@ -106,7 +106,7 @@ def make_sngan(gan_dir):
 
 
 def make_style_gan2(size, weights, shift_in_w=True):
-    G = StyleGAN2Generator(z_dim = 512, c_dim = 0, w_dim = 512, img_resolution = 256, img_channels = 3)
+    G = StyleGAN2Generator(z_dim = 512, c_dim = 0, w_dim = 512, img_resolution = 256, img_channels = 3, mapping_kwargs = {'num_ws': 16}, num_ws=16, num_layers=14, num_critical=2, margin_size=10, num_fp16_res=4)
     G.load_state_dict(torch.load(weights, map_location='cpu')['g_ema'])
     G.cuda().eval()
 
