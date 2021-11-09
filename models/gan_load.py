@@ -56,11 +56,12 @@ class StyleGAN2Wrapper(nn.Module):
         return self.style_gan2(torch.unsqueeze(input, dim=0), cond, input_is_latent=input_is_latent)[0]
 
     def gen_shifted(self, z, shift):
+        cond = torch.empty(0, 3)
         if self.shift_in_w:
-            w = self.style_gan2.get_latent(z)
-            return self.forward(w + shift, torch.empty(0, 3), input_is_latent=True)
+            w = self.style_gan2.mapping(z, cond)
+            return self.forward(w + shift, cond, input_is_latent=True)
         else:
-            return self.forward(z + shift, torch.empty(0, 3), input_is_latent=False)
+            return self.forward(z + shift, cond, input_is_latent=False)
 
 
 def make_biggan_config(weights_root):
