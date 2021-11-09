@@ -8,7 +8,7 @@ from models.SNGAN.load import load_model_from_state_dict
 from models.gan_with_shift import gan_with_shift
 
 try:
-    from models.StyleGAN2.model import Generator as StyleGAN2Generator
+    from models.networks_stylegan3 import Generator as StyleGAN2Generator
 except Exception as e:
     print('StyleGAN2 load fail: {}'.format(e))
 
