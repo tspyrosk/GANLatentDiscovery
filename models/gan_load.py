@@ -59,7 +59,7 @@ class StyleGAN2Wrapper(nn.Module):
         print('z:', z.shape)
         print('shift:', shift.shape)
         if self.shift_in_w:
-            w = self.style_gan2.mapping(z, cond)
+            w = self.style_gan2.mapping(z, cond)[0][0]
             print('w:', w.shape)
             return self.forward(w + shift, cond, input_is_latent=True)
         else:
