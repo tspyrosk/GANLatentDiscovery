@@ -509,9 +509,9 @@ class Generator(torch.nn.Module):
 
     def forward(self, z, c, input_is_latent=True, truncation_psi=1, truncation_cutoff=None, update_emas=False, **synthesis_kwargs):
         if input_is_latent:
-            ws = self.mapping(z, c, truncation_psi=truncation_psi, truncation_cutoff=truncation_cutoff, update_emas=update_emas)
-        else:
             ws = z
+        else:
+            ws = self.mapping(z, c, truncation_psi=truncation_psi, truncation_cutoff=truncation_cutoff, update_emas=update_emas)
         img = self.synthesis(ws, update_emas=update_emas, **synthesis_kwargs)
         return img
 
